@@ -1,0 +1,220 @@
+/* Root Styling */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #e6e6e6;  /* Softer grayish background */
+}
+
+/* Logo Styling */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms, transform 0.3s ease-in-out;
+  border-radius: 50%;
+  border: 3px solid #567c6a;  /* Muted green */
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
+  transform: rotate(10deg);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
+  transform: rotate(-10deg);
+}
+
+/* Keyframe Animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Card Styling */
+.card {
+  padding: 2em;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  /* Softer shadow */
+  border-radius: 10px;
+}
+
+/* Event Item Styling */
+.event-item {
+  background-color: #f0f0f0; /* Light gray for calmness */
+  width: 100%;
+  max-width: 450px;
+  min-height: 350px;
+  border: 2px solid #89a7a3;  /* Muted blue-green */
+  border-radius: 12px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.event-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Event Item Text Styling */
+.event-item h1 {
+  font-size: 1.6rem;
+  color: #4a6572; /* Muted dark teal */
+  margin-bottom: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+.event-item h2 {
+  font-size: 1.3rem;
+  color: #6a8c89; /* Muted green */
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+.event-item h3 {
+  font-size: 1.1rem;
+  color: #567c6a; /* Muted green-blue */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Form Styling */
+.event-item form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-item input {
+  padding: 12px;
+  border: 1px solid #567c6a;  /* Muted green border */
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f0f9f8; /* Subtle light green background */
+  transition: border-color 0.3s;
+}
+
+.event-item input:focus {
+  border-color: #4a6572;
+  outline: none;
+}
+
+/* Submit Button Styling */
+.event-item button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-item button[type="submit"] {
+  background-color: #567c6a; /* Muted green */
+  color: white;
+}
+
+.event-item button[type="submit"]:hover {
+  background-color: #4a6572; /* Slightly darker green */
+  transform: translateY(-3px);
+}
+
+.event-item button:last-of-type {
+  background-color: #c94e4e;  /* Muted red */
+  color: white;
+}
+
+.event-item button:last-of-type:hover {
+  background-color: #9b3838;  /* Slightly darker red */
+  transform: translateY(-3px);
+}
+
+/* Event Item (additional unique style) */
+.event-item {
+  background-color: #e7a5a5;  /* Light muted red */
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border: 2px solid #89a7a3; /* Muted blue-green border */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.event-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Button for Cancel (editing state) */
+.event-item button[type="button"] {
+  background-color: #8e6b9a; /* Muted purple */
+  color: white;
+  font-weight: bold;
+}
+
+.event-item button[type="button"]:hover {
+  background-color: #6a4678; /* Darker purple */
+  transform: translateY(-3px);
+}
+/* Welcome Text Styling */
+.welcome-text {
+  font-size: 2.5rem;
+  color:#e7a5a5;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Input Styling */
+.event-item input {
+  padding: 12px;
+  border: 1px solid #0288d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f0faff;
+  color: #333333; /* Darker text color for better visibility */
+  transition: border-color 0.3s;
+}
+
+/* Focused Input Styling */
+.event-item input:focus {
+  border-color: #01579b;
+  outline: none;
+  color: #000000; /* Ensure the text color is black when focused */
+}
+/* Body Styling */
+body {
+  background-color: #212121; /* Dark background color */
+  color: #e0e0e0; /* Lighter text color for contrast */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Root Styling */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #424242; /* Slightly lighter dark background for the content area */
+}
