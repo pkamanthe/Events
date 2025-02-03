@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import EventItem from "./EventItem"; // Assuming you have an EventItem component
+import React, { useState, useEffect } from "react";
+import EventItem from "./EventItem"; 
 
-function EventLists({ events, setEvents }) {
+function EventList({ events, setEvents }) {
+  
   const [eventData, setEventData] = useState({
     name: "",
     location: "",
     category: "",
-    event_datetime: "" // Use event_datetime for consistency
+    event_datetime: "", 
   });
+  
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // Handle input changes
+  
+  const [filteredEvents, setFilteredEvents] = useState(events);
+
+  
   function handleChange(e) {
     const { name, value } = e.target;
     setEventData({
@@ -18,11 +24,11 @@ function EventLists({ events, setEvents }) {
     });
   }
 
-  // Handle form submission (adding new events)
+  
   function handleSubmit(e) {
     e.preventDefault();
+
     
-    // Convert datetime-local input to correct format "YYYY-MM-DD HH:MM:SS"
     const formattedDateTime = new Date(eventData.event_datetime)
       .toISOString()
       .slice(0, 19)
@@ -30,8 +36,8 @@ function EventLists({ events, setEvents }) {
 
     const newEvent = { ...eventData, event_datetime: formattedDateTime };
 
-    // Send the new event to the backend API
-    fetch("http://127.0.0.1:5000/events", {  // Ensure correct endpoint
+    
+    fetch("http://127.0.0.1:5000/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,25 +46,39 @@ function EventLists({ events, setEvents }) {
     })
       .then((response) => response.json())
       .then((event) => {
-        setEvents((prevEvents) => [...prevEvents, event]); // Add new event to state
-        setEventData({ name: "", location: "", category: "", event_datetime: "" }); // Reset form
+        setEvents((prevEvents) => [...prevEvents, event]);
+        setEventData({ name: "", location: "", category: "", event_datetime: "" }); 
       })
       .catch((error) => console.error("Error adding event:", error));
   }
 
+  useEffect(() => {
+    const filtered = events.filter((event) =>
+      event.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredEvents(filtered);
+  }, [searchQuery, events]);
+
   return (
     <div>
       <h2>Event List</h2>
+    <div>
+        <input
+          type="text"
+          placeholder="Search events..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} 
+        />
+      </div>
 
-      {/* Map through events and display each one using EventItem */}
-      {events.length > 0 ? (
-        events.map((event) => (
+      {filteredEvents.length > 0 ? (
+        filteredEvents.map((event) => (
           <EventItem
             key={event.id}
             name={event.name}
             location={event.location}
             category={event.category}
-            date={new Date(event.event_datetime).toLocaleString()} // Display formatted date
+            date={new Date(event.event_datetime).toLocaleString()} 
             id={event.id}
             events={events}
             setEvents={setEvents}
@@ -68,7 +88,6 @@ function EventLists({ events, setEvents }) {
         <p>No events available.</p>
       )}
 
-      {/* Add Event Form */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -107,4 +126,4 @@ function EventLists({ events, setEvents }) {
   );
 }
 
-export default EventLists;
+export default EventList;

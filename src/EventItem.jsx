@@ -9,37 +9,26 @@ function EventItem({ id, name, location, category, date, events, setEvents }) {
 
   const base_url = "http://127.0.0.1:5000/events";
 
-  // Format date for `datetime-local` input
   function formatDate(dateString) {
     if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toISOString().slice(0, 16); // Extracts "YYYY-MM-DDTHH:MM"
+    return date.toISOString().slice(0, 16); 
   }
 
-  // Handle event deletion
-  function handleDelete() {
-    fetch(`${base_url}/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        let remainingEvents = events.filter((event) => event.id !== id);
-        setEvents(remainingEvents);
-      })
-      .catch((error) => console.error("Error deleting event:", error));
-  }
-
-  // Handle event update
   function handleSubmit(e) {
     e.preventDefault();
+
+    
+    const formattedDateTime = new Date(newDate)
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ");
+
     const updatedData = {
       name: newName,
       location: newLocation,
       category: newCategory,
-      date: new Date(newDate).toISOString(), // Convert to ISO format
+      event_datetime: formattedDateTime,
     };
 
     fetch(`${base_url}/${id}`, {
@@ -58,6 +47,17 @@ function EventItem({ id, name, location, category, date, events, setEvents }) {
         setIsEditing(false);
       })
       .catch((error) => console.error("Error updating event:", error));
+  }
+
+  function handleDelete(id) {
+    fetch(`${base_url}/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        const updatedEvents = events.filter((event) => event.id !== id);
+        setEvents(updatedEvents);
+      })
+      .catch((error) => console.error("Error deleting event:", error));
   }
 
   return (
@@ -100,7 +100,7 @@ function EventItem({ id, name, location, category, date, events, setEvents }) {
           <p>{category}</p>
           <p>{new Date(date).toLocaleString()}</p>
           <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button onClick={() => handleDelete(id)}>Delete</button>
         </>
       )}
     </div>

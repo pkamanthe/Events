@@ -1,26 +1,15 @@
-import React from "react";
+import React from 'react';
 
-function Navbar({ searchQuery, setSearchQuery, setView }) {
-  return (
-    <nav className="navbar">
-    
-      <button onClick={() => setView("home")}>🏠 Home</button>
-      <button onClick={() => setView("events")}>📅 Events</button>
-
-  
-      <input
-        type="text"
-        placeholder="Search Event..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-
-      <button onClick={() => setView("all")}>📌 All Events</button>
-
-      
-      <button onClick={() => setView("add")}>➕ Add Event</button>
-    </nav>
-  );
-}
+const Navbar = () => (
+  <nav className="navbar">
+    <h1>EventMingle</h1>
+    <div className="navbar-links">
+      <a href="/">Home</a>
+      <a href="/view-events">View Events</a>
+      <a href="/add-event">Add Event</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </nav>
+);
 
 export default Navbar;
