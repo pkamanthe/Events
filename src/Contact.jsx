@@ -9,7 +9,7 @@ function Contact() {
 
   const [formStatus, setFormStatus] = useState('');
 
-  // Handle input changes
+  
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData({
@@ -18,23 +18,22 @@ function Contact() {
     });
   }
 
-  // Handle form submission
   function handleSubmit(e) {
     e.preventDefault();
     
-    // Simple form validation
+   
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus('Please fill in all fields.');
       return;
     }
 
-    // Simulate sending the form data (you can integrate an API here)
+  
     setFormStatus('Sending...');
 
-    // After form submission (e.g., API call or form handling)
+    
     setTimeout(() => {
       setFormStatus('Thank you for reaching out!');
-      setFormData({ name: '', email: '', message: '' }); // Clear form after submission
+      setFormData({ name: '', email: '', message: '' }); 
     }, 1500);
   }
 
@@ -43,7 +42,6 @@ function Contact() {
       <h2>Contact Us</h2>
       <p>We'd love to hear from you! Please fill out the form below to get in touch.</p>
       
-      {/* Display the form submission status */}
       {formStatus && <p>{formStatus}</p>}
 
       <form onSubmit={handleSubmit}>

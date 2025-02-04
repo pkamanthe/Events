@@ -8,3 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # EventMingle-App
 # Events
+https://github.com/pkamanthe/EventMingle-App.git
+https://eloquent-babka-e731c7.netlify.app/
